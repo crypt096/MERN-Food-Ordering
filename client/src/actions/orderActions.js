@@ -1,4 +1,4 @@
-import { GET_ORDERS,ADD_ORDER,DELETE_ORDER,ORDERS_LOADING } from './types';
+import { GET_ORDERS,GET_ORDER_BY_ID,ADD_ORDER,DELETE_ORDER,EDIT_ORDER,ORDERS_LOADING } from './types';
 import axios from 'axios';
 
 export const getOrders = () => dispatch => {
@@ -12,6 +12,17 @@ export const getOrders = () => dispatch => {
     )
 }
 
+export const getOrderById = id => dispatch => {
+    dispatch(setOrdersLoading());
+    axios.get(`/api/orders/${id}`)
+    .then(res => 
+        dispatch({
+            type : GET_ORDER_BY_ID,
+            payload : res.data
+        })
+    )
+}
+
 export const addOrder = order => dispatch => {
     axios.post('api/orders/add',order)
     .then(res => dispatch({
@@ -19,8 +30,6 @@ export const addOrder = order => dispatch => {
         payload : res.data
     }))
 }
-
-
 
 export const deleteOrder = id => dispatch => {
     axios.delete(`api/orders/${id}`)
@@ -30,7 +39,13 @@ export const deleteOrder = id => dispatch => {
     }) )
 }
 
-
+export const editOrder = (id , order) => dispatch => {
+    axios.post(`/api/orders/${id}`,order)
+    .then(res => dispatch({
+        type : EDIT_ORDER,
+        payload : res.data
+    }) )
+}
 
 export const setOrdersLoading = () => {
     return {

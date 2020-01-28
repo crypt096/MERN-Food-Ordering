@@ -15,7 +15,6 @@ import  { addOrder }  from '../actions/orderActions';
 class OrderModal extends Component {
   state = {
     orderModal: false,
-    successModal : false,
     name: ''
   };
 
@@ -24,12 +23,6 @@ class OrderModal extends Component {
       orderModal: !this.state.orderModal
     });
   };
-
-  toggleSM = () => {
-    this.setState({
-      successModal : !this.state.successModal
-    });
-  }
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -51,13 +44,9 @@ class OrderModal extends Component {
 
     // Close modal
     this.toggle();
+
+    alert('Order successfully added!');
   };
-
-  onSuccessSubmit = e => {
-    e.preventDefault();
-
-    this.toggleSM();
-  }
 
   render() {
     return (
@@ -118,21 +107,8 @@ class OrderModal extends Component {
                   onChange={this.onChange}
                 />
 
-                <Button color='dark' style={{ marginTop: '2rem' }} block onClick={this.toggleSM}>
-                  Finish ordering
-                </Button>
-              </FormGroup>
-            </Form>
-          </ModalBody>
-        </Modal>
-
-        <Modal isOpen={this.state.successModal} toggle={this.toggleSM}>
-          <ModalHeader toggle={this.toggleSM}>CONFIRMATION</ModalHeader>
-          <ModalBody>
-            <Form onSubmit={this.onSuccessSubmit}>
-              <FormGroup>
                 <Button color='dark' style={{ marginTop: '2rem' }} block>
-                  OK!
+                  Finish ordering
                 </Button>
               </FormGroup>
             </Form>

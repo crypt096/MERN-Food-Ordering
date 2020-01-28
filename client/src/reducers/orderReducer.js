@@ -1,4 +1,4 @@
-import { GET_ORDERS,ADD_ORDER,DELETE_ORDER,ORDERS_LOADING } from '../actions/types';
+import { GET_ORDERS,GET_ORDER_BY_ID,ADD_ORDER,DELETE_ORDER,ORDERS_LOADING, EDIT_ORDER } from '../actions/types';
 
 const initialState = {
   orders: [],
@@ -13,6 +13,12 @@ export default function (state = initialState, action) {
       orders : action.payload,
       loading: false
     };
+    case GET_ORDER_BY_ID: 
+    return {
+      ...state,
+      orders : action.payload,
+      loading: false
+    };
     case DELETE_ORDER: 
     return {
       ...state,
@@ -22,6 +28,11 @@ export default function (state = initialState, action) {
     return {
       ...state,
       orders : [action.payload,...state.orders]
+    };
+    case EDIT_ORDER: 
+    return {
+      ...state,
+      orders : state.orders._id === action.payload._id ? action.payload : state.orders
     };
     case ORDERS_LOADING: 
     return {

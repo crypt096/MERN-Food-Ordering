@@ -35,7 +35,7 @@ function App() {
                 <OrderList/>
               </Route>
 
-              <Route exact path='/edit/:id'>
+              <Route exact path='/order/:id'>
               <EditOrder/>
               </Route>
 
