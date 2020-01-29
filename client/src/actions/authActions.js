@@ -6,6 +6,8 @@ import {
   USER_LOADING,
   AUTH_ERROR,
   LOGIN_SUCCESS,
+  UPDATE_SUCCESS,
+  UPDATE_FAIL,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
@@ -36,7 +38,15 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 // Register User
-export const register = ({ name, email, password }) => dispatch => {
+export const register = ({
+  name,
+  email,
+  password,
+  firstName,
+  lastName,
+  address,
+  favoriteFood
+}) => dispatch => {
   // Headers
   const config = {
     headers: {
@@ -48,7 +58,11 @@ export const register = ({ name, email, password }) => dispatch => {
   const body = JSON.stringify({
     name,
     email,
-    password
+    password,
+    firstName,
+    lastName,
+    address,
+    favoriteFood
   });
 
   axios
@@ -65,6 +79,53 @@ export const register = ({ name, email, password }) => dispatch => {
       );
       dispatch({
         type: REGISTER_FAIL
+      });
+    });
+};
+
+// Update user
+export const update = ({
+  _id,
+  name,
+  email,
+  password,
+  firstName,
+  lastName,
+  address,
+  favoriteFood
+}) => dispatch => {
+  // Headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  // Request body
+  const body = JSON.stringify({
+    name,
+    email,
+    password,
+    firstName,
+    lastName,
+    address,
+    favoriteFood
+  });
+
+  axios
+    .post(`/api/users/${_id}`, _id, body, config)
+    .then(res =>
+      dispatch({
+        type: UPDATE_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "UPDATE_FAIL")
+      );
+      dispatch({
+        type: UPDATE_FAIL
       });
     });
 };

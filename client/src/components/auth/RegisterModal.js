@@ -22,6 +22,10 @@ class RegisterModal extends Component {
     name: "",
     email: "",
     password: "",
+    firstName: "",
+    lastName: "",
+    address: "",
+    favoriteFood: "",
     msg: null
   };
 
@@ -66,13 +70,25 @@ class RegisterModal extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const { name, email, password } = this.state;
+    const {
+      name,
+      email,
+      password,
+      firstName,
+      lastName,
+      address,
+      favoriteFood
+    } = this.state;
 
     // Create user object
     const newUser = {
       name,
       email,
-      password
+      password,
+      firstName,
+      lastName,
+      address,
+      favoriteFood
     };
 
     // Attempt to register
@@ -120,6 +136,46 @@ class RegisterModal extends Component {
                   name="password"
                   id="password"
                   placeholder="Password"
+                  className="mb-3"
+                  onChange={this.onChange}
+                />
+
+                <Label for="firstName">First Name</Label>
+                <Input
+                  type="firstName"
+                  name="firstName"
+                  id="firstName"
+                  placeholder="First Name"
+                  className="mb-3"
+                  onChange={this.onChange}
+                />
+
+                <Label for="lastName">Last Name</Label>
+                <Input
+                  type="lastName"
+                  name="lastName"
+                  id="lastName"
+                  placeholder="Last name"
+                  className="mb-3"
+                  onChange={this.onChange}
+                />
+
+                <Label for="address">Address</Label>
+                <Input
+                  type="address"
+                  name="address"
+                  id="address"
+                  placeholder="address"
+                  className="mb-3"
+                  onChange={this.onChange}
+                />
+
+                <Label for="favoriteFood">Favorite food</Label>
+                <Input
+                  type="favoriteFood"
+                  name="favoriteFood"
+                  id="favoriteFood"
+                  placeholder="Favorite food"
                   className="mb-3"
                   onChange={this.onChange}
                 />

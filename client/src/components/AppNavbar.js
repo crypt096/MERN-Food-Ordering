@@ -15,55 +15,6 @@ import RegisterModal from "./auth/RegisterModal";
 import LoginModal from "./auth/LoginModal";
 import Logout from "./auth/Logout";
 
-// export class AppNavbar extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       isOpen: false
-//     };
-//   }
-
-//   toggle = () => {
-//     this.setState({ isOpen: !this.state.isOpen });
-//   };
-//   render() {
-//     return (
-//       <div>
-//         <Navbar color="dark" dark expand="md" className="mb-5">
-//           <Container>
-//             <NavbarBrand href="/">ShoppingList</NavbarBrand>
-//             <NavbarToggler onClick={this.toggle} />
-//             <Collapse isOpen={this.state.isOpen} navbar>
-//               <Nav className="mr-auto" navbar>
-//                 <NavItem>
-//                   <NavLink href="/items">Items</NavLink>
-//                 </NavItem>
-//                 <NavItem>
-//                   <NavLink href="/orders">Orders</NavLink>
-//                 </NavItem>
-//                 <NavItem>
-//                   <NavLink href="/food">Food</NavLink>
-//                 </NavItem>
-//               </Nav>
-//               <Nav className="ml-auto" navbar>
-//                 <NavItem>
-//                   <RegisterModal />
-//                 </NavItem>
-//                 <NavItem>
-//                   <Logout />
-//                 </NavItem>
-//               </Nav>
-//             </Collapse>
-//           </Container>
-//         </Navbar>
-//       </div>
-//     );
-//   }
-// }
-
-// export default AppNavbar;
-
 class AppNavbar extends Component {
   state = {
     isOpen: false
@@ -85,9 +36,21 @@ class AppNavbar extends Component {
     const authLinks = (
       <Fragment>
         <NavItem>
-          <span className="navbar-text mr-3">
+          <NavLink href="/items">Items</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/orders">Orders</NavLink>{" "}
+        </NavItem>{" "}
+        <NavItem>
+          <NavLink href="/food">Food</NavLink>
+        </NavItem>
+        <NavItem>
+          <span className="navbar-text ml-3">
             <strong>{user ? `Welcome ${user.name}` : ""}</strong>
           </span>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/profile">My profile</NavLink>
         </NavItem>
         <NavItem>
           <Logout />
@@ -113,9 +76,7 @@ class AppNavbar extends Component {
             <NavbarBrand href="/">ShoppingList</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                {isAuthenticated ? authLinks : guestLinks}
-              </Nav>
+              <Nav navbar>{isAuthenticated ? authLinks : guestLinks}</Nav>
             </Collapse>
           </Container>
         </Navbar>
