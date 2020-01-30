@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import {
+  Container,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -7,7 +8,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container
+  NavbarText
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -35,37 +36,34 @@ class AppNavbar extends Component {
 
     const authLinks = (
       <Fragment>
-        <NavItem>
-          <NavLink href="/items">Items</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/orders">Orders</NavLink>{" "}
-        </NavItem>{" "}
-        <NavItem>
-          <NavLink href="/food">Food</NavLink>
-        </NavItem>
-        <NavItem>
-          <span className="navbar-text ml-3">
-            <strong>{user ? `Welcome ${user.name}` : ""}</strong>
-          </span>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/profile">My profile</NavLink>
-        </NavItem>
-        <NavItem>
-          <Logout />
-        </NavItem>
+        <Nav className="mr-auto" navbar>
+          <NavItem>
+            <NavLink href="/items">Items</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/orders">Orders</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/food">Food</NavLink>
+          </NavItem>
+        </Nav>
+        <NavbarText className="navbar-text mr-5">
+          <strong>{user ? `Welcome ${user.name}` : ""}</strong>
+        </NavbarText>
+        <Logout />
+        <strong style={{ color: "white" }}>|</strong>
+        <NavLink href="/profile" style={{ color: "white" }}>
+          <strong>My profile</strong>
+        </NavLink>
       </Fragment>
     );
 
     const guestLinks = (
       <Fragment>
-        <NavItem>
+        <Nav className="ml-auto">
           <RegisterModal />
-        </NavItem>
-        <NavItem>
           <LoginModal />
-        </NavItem>
+        </Nav>
       </Fragment>
     );
 
@@ -76,7 +74,7 @@ class AppNavbar extends Component {
             <NavbarBrand href="/">ShoppingList</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav navbar>{isAuthenticated ? authLinks : guestLinks}</Nav>
+              {isAuthenticated ? authLinks : guestLinks}
             </Collapse>
           </Container>
         </Navbar>
