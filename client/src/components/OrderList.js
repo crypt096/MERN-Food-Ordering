@@ -3,7 +3,7 @@ import { Table } from "reactstrap";
 import { connect } from "react-redux";
 import { getOrders, deleteOrder } from "../actions/orderActions";
 import PropTypes from "prop-types";
-import { FaTrash, FaEdit, FaGripLinesVertical } from "react-icons/fa";
+import { FaTrash, FaEdit, FaGripLinesVertical, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export class OrderList extends Component {
@@ -80,7 +80,9 @@ export class OrderList extends Component {
           <td style={{ textAlign: "center" }}>{description}</td>
           <td style={{ textAlign: "center" }}>{quantity}</td>
           <td style={{ textAlign: "center" }}>{status}</td>
-          <td style={{ textAlign: "center" }}>{rating}</td>
+          <td style={{ textAlign: "center" }}>
+            {rating} <FaStar className="mb-1 ml-1" />
+          </td>
           <td style={{ textAlign: "center" }}>{place_of_delivery}</td>
           <td style={{ textAlign: "center" }}>{date.substring(0, 10)}</td>
           <td>

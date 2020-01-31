@@ -12,9 +12,9 @@ import ItemModel from "./components/ItemModel";
 import OrderList from "./components/OrderList";
 import EditOrder from "./components/EditOrder";
 import FoodList from "./components/FoodList";
+import UserProfile from "./components/UserProfile";
 
 import { Container } from "reactstrap";
-import UserProfile from "./components/UserProfile";
 
 class App extends Component {
   componentDidMount() {
@@ -46,7 +46,7 @@ class App extends Component {
                   <ShoppingList />
                 </Route>
 
-                <Route path="/profile">
+                <Route path="/users/:id">
                   <UserProfile />
                 </Route>
               </Switch>

@@ -7,7 +7,8 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
+  Alert
 } from "reactstrap";
 import { connect } from "react-redux";
 import { addOrder } from "../actions/orderActions";
@@ -65,7 +66,10 @@ class OrderModal extends Component {
             Order
           </Button>
         ) : (
-          <h4 className="mb-3 ml-4">Please log in to manage orders</h4>
+          <Alert color="danger">
+            Please <strong>Log In</strong> or <strong>Register</strong> to order
+            food
+          </Alert>
         )}
 
         <Modal isOpen={this.state.orderModal} toggle={this.toggle}>

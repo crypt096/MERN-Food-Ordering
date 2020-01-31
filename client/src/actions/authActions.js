@@ -18,7 +18,8 @@ import {
 export const loadUser = () => (dispatch, getState) => {
   // User loading
   dispatch({
-    type: USER_LOADING
+    type: USER_LOADING,
+    token: getState(tokenConfig)
   });
 
   axios

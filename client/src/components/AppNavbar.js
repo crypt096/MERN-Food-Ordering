@@ -52,9 +52,13 @@ class AppNavbar extends Component {
         </NavbarText>
         <Logout />
         <strong style={{ color: "white" }}>|</strong>
-        <NavLink href="/profile" style={{ color: "white" }}>
-          <strong>My profile</strong>
-        </NavLink>
+        {user ? (
+          <NavLink href={`/users/${user._id}`} style={{ color: "white" }}>
+            <strong>My profile</strong>
+          </NavLink>
+        ) : (
+          ""
+        )}
       </Fragment>
     );
 
@@ -71,7 +75,14 @@ class AppNavbar extends Component {
       <div>
         <Navbar color="dark" dark expand="sm" className="mb-5">
           <Container>
-            <NavbarBrand href="/">ShoppingList</NavbarBrand>
+            <NavbarBrand href="/">
+              <img
+                src="https://cdn2.iconfinder.com/data/icons/shopping-retail-1/64/food-business-shop-commerce-store-commerce_and_shopping-512.png"
+                width="20px"
+                className="mb-1 mr-2"
+              />
+              Food Shop
+            </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               {isAuthenticated ? authLinks : guestLinks}

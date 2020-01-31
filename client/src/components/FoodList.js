@@ -9,6 +9,7 @@ import {
   CardTitle,
   CardSubtitle
 } from "reactstrap";
+import { FaShoppingBasket, FaStar } from "react-icons/fa";
 import { connect } from "react-redux";
 import { getFoods } from "../actions/foodActions";
 import PropTypes from "prop-types";
@@ -63,12 +64,29 @@ export class FoodList extends Component {
               alt="Card image cap"
             />
             <CardBody>
-              <CardTitle>{name}</CardTitle>
-              <CardSubtitle>{opis}</CardSubtitle>
+              <CardTitle
+                className="pr-5"
+                style={{ fontSize: "24px", color: "black", fontWeight: "500" }}
+              >
+                {name}
+              </CardTitle>
+              <CardSubtitle
+                className="mb-2 mt-1"
+                style={{ fontSize: "14px", color: "gray" }}
+              >
+                {opis}
+              </CardSubtitle>
               <CardText>
-                <strong>Cena :</strong> {cena} RSD
+                <FaShoppingBasket
+                  className="mb-1 mr-2"
+                  style={{ fontSize: "20px" }}
+                />
+                <strong> {cena} RSD </strong>
               </CardText>
-              <CardText>{ocena}</CardText>
+              <CardText>
+                <FaStar className="mb-1 mr-2" style={{ fontSize: "20px" }} />
+                <strong>{ocena}</strong>
+              </CardText>
               <OrderModal />
             </CardBody>
           </Card>
@@ -78,16 +96,18 @@ export class FoodList extends Component {
 
     return (
       <div>
-        <h1 className="display-3">Search for food</h1>
-        <br />
-        <input
-          className="form-control col-4"
-          placeholder="Search food by name | opis | ocena | cena"
-          type="search"
-          value={this.state.search}
-          onChange={this.updateSearch.bind(this)}
-        />
-        <br />
+        <div className="ml-3">
+          <h1 className="display-3">Search for food</h1>
+          <br />
+          <input
+            className="form-control col-4"
+            placeholder="Search food by name | opis | ocena | cena"
+            type="search"
+            value={this.state.search}
+            onChange={this.updateSearch.bind(this)}
+          />
+          <br />
+        </div>
         <CardDeck className="row">{foodCards}</CardDeck>
       </div>
     );
