@@ -7,8 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import AppNavbar from "./components/AppNavbar";
-import ShoppingList from "./components/ShoppingList";
-import ItemModel from "./components/ItemModel";
+// import ShoppingList from "./components/ShoppingList";
+// import ItemModel from "./components/ItemModel";
 import OrderList from "./components/OrderList";
 import EditOrder from "./components/EditOrder";
 import FoodList from "./components/FoodList";
@@ -41,10 +41,10 @@ class App extends Component {
                   <EditOrder />
                 </Route>
 
-                <Route path="/items">
+                {/* <Route path="/items">
                   <ItemModel />
                   <ShoppingList />
-                </Route>
+                </Route> */}
 
                 <Route path="/users/:id">
                   <UserProfile />

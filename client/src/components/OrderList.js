@@ -85,7 +85,7 @@ export class OrderList extends Component {
           </td>
           <td style={{ textAlign: "center" }}>{place_of_delivery}</td>
           <td style={{ textAlign: "center" }}>{date.substring(0, 10)}</td>
-          <td>
+          <td style={{ textAlign: "center" }}>
             {status === "closed" ? null : (
               <span>
                 <Link to={`/order/${_id}`} key={_id}>

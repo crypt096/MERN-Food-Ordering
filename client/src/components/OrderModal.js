@@ -42,6 +42,7 @@ class OrderModal extends Component {
       description: this.state.description,
       quantity: this.state.quantity,
       rating: this.state.rating,
+      status: "in progress",
       place_of_delivery: this.state.place_of_delivery
     };
 
@@ -59,8 +60,10 @@ class OrderModal extends Component {
       <div>
         {this.props.isAuthenticated ? (
           <Button
+            outline
             color="dark"
-            style={{ marginBottom: "2rem" }}
+            className="mb-2 mt-2"
+            width="150px"
             onClick={this.toggle}
           >
             Order
@@ -77,45 +80,64 @@ class OrderModal extends Component {
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="order">Order</Label>
+                <Label for="order" className="mb-1">
+                  <strong>Order name</strong>
+                </Label>
                 <Input
                   type="text"
                   name="name"
                   id="order"
                   placeholder="Order name"
                   onChange={this.onChange}
+                  className="mb-3"
                 />
 
+                <Label for="description" className="mb-1">
+                  <strong>Description</strong>
+                </Label>
                 <Input
                   type="text"
                   name="description"
                   id="order"
                   placeholder="Order description"
                   onChange={this.onChange}
+                  className="mb-3"
                 />
 
+                <Label for="quantity" className="mb-1">
+                  <strong>Quantity</strong>
+                </Label>
                 <Input
                   type="number"
                   name="quantity"
-                  id="order"
+                  id="quantity"
                   placeholder="Quantity"
                   onChange={this.onChange}
+                  className="mb-3"
                 />
 
+                <Label for="rating" className="mb-1">
+                  <strong>Rating</strong>
+                </Label>
                 <Input
                   type="number"
                   name="rating"
-                  id="order"
+                  id="rating"
                   placeholder="Rating"
                   onChange={this.onChange}
+                  className="mb-3"
                 />
 
+                <Label for="place_of_delivery" className="mb-1">
+                  <strong>Place of delivery</strong>
+                </Label>
                 <Input
                   type="text"
                   name="place_of_delivery"
-                  id="order"
+                  id="place_of_delivery"
                   placeholder="Place of delivery"
                   onChange={this.onChange}
+                  className="mb-3"
                 />
 
                 <Button color="dark" style={{ marginTop: "2rem" }} block>

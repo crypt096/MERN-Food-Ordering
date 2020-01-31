@@ -95,6 +95,7 @@ class UserProfile extends Component {
                             <FormGroup>
                               <label htmlFor="name">Username</label>
                               <Input
+                                disabled
                                 name="name"
                                 defaultValue={this.props.user.name}
                                 onChange={this.onChange}
@@ -103,7 +104,9 @@ class UserProfile extends Component {
                               />
                             </FormGroup>
                           </Col>
-                          <Col className="pl-md-3" md="3">
+                        </Row>
+                        <Row>
+                          <Col className="pl-md-3" md="5">
                             <FormGroup>
                               <label htmlFor="email">Email address</label>
                               <Input
@@ -115,12 +118,12 @@ class UserProfile extends Component {
                               />
                             </FormGroup>
                           </Col>
-                          <Col className="pl-md-3" md="3">
+                          <Col className="pl-md-3" md="5">
                             <FormGroup>
                               <label htmlFor="password">Password</label>
                               <Input
                                 name="password"
-                                placeholder="password"
+                                placeholder="********"
                                 type="password"
                                 defaultValue={this.props.user.password}
                                 onChange={this.onChange}
@@ -129,7 +132,7 @@ class UserProfile extends Component {
                           </Col>
                         </Row>
                         <Row>
-                          <Col className="pr-md-3" md="6">
+                          <Col className="pr-md-3" md="5">
                             <FormGroup>
                               <label htmlFor="firstName">First Name</label>
                               <Input
@@ -141,7 +144,7 @@ class UserProfile extends Component {
                               />
                             </FormGroup>
                           </Col>
-                          <Col className="pl-md-3" md="6">
+                          <Col className="pl-md-3" md="5">
                             <FormGroup>
                               <label htmlFor="lastName">Last Name</label>
                               <Input
@@ -155,7 +158,7 @@ class UserProfile extends Component {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md="6">
+                          <Col md="10">
                             <FormGroup>
                               <label htmlFor="address">Address</label>
                               <Input
@@ -167,7 +170,9 @@ class UserProfile extends Component {
                               />
                             </FormGroup>
                           </Col>
-                          <Col md="6">
+                        </Row>
+                        <Row>
+                          <Col md="5">
                             <FormGroup>
                               <label htmlFor="favoriteFood">
                                 Favorite food
@@ -186,9 +191,9 @@ class UserProfile extends Component {
                           <Button
                             onClick={this.printState}
                             className="btn-fill"
-                            color="secondary"
+                            color="warning"
                             type="submit"
-                            style={{ width: "100%" }}
+                            style={{ width: "100px" }}
                           >
                             Save
                           </Button>

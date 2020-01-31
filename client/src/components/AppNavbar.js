@@ -37,9 +37,9 @@ class AppNavbar extends Component {
     const authLinks = (
       <Fragment>
         <Nav className="mr-auto" navbar>
-          <NavItem>
+          {/* <NavItem>
             <NavLink href="/items">Items</NavLink>
-          </NavItem>
+          </NavItem> */}
           <NavItem>
             <NavLink href="/orders">Orders</NavLink>
           </NavItem>
@@ -78,6 +78,7 @@ class AppNavbar extends Component {
             <NavbarBrand href="/">
               <img
                 src="https://cdn2.iconfinder.com/data/icons/shopping-retail-1/64/food-business-shop-commerce-store-commerce_and_shopping-512.png"
+                alt="app logo"
                 width="20px"
                 className="mb-1 mr-2"
               />

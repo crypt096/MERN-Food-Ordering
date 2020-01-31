@@ -86,7 +86,7 @@ export class EditOrder extends Component {
             <Input
               type="text"
               name="description"
-              id="order"
+              id="description"
               defaultValue={orders.description}
               onChange={this.onChange}
               onMouseLeave={this.checkInputValue}
@@ -99,7 +99,7 @@ export class EditOrder extends Component {
             <Input
               type="number"
               name="quantity"
-              id="order"
+              id="quantity"
               defaultValue={orders.quantity}
               onChange={this.onChange}
               onMouseLeave={this.checkInputValue}
@@ -112,7 +112,7 @@ export class EditOrder extends Component {
             <Input
               type="number"
               name="rating"
-              id="order"
+              id="rating"
               defaultValue={orders.rating}
               onChange={this.onChange}
               onMouseLeave={this.checkInputValue}
@@ -125,7 +125,7 @@ export class EditOrder extends Component {
             <Input
               type="text"
               name="place_of_delivery"
-              id="order"
+              id="place_of_delivery"
               defaultValue={orders.place_of_delivery}
               onChange={this.onChange}
               onMouseLeave={this.checkInputValue}
