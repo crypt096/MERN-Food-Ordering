@@ -85,16 +85,10 @@ export const register = ({
 };
 
 // Update user
-export const update = ({
-  _id,
-  name,
-  email,
-  password,
-  firstName,
-  lastName,
-  address,
-  favoriteFood
-}) => dispatch => {
+export const update = (
+  id,
+  { name, email, password, firstName, lastName, address, favoriteFood }
+) => dispatch => {
   // Headers
   const config = {
     headers: {
@@ -114,7 +108,7 @@ export const update = ({
   });
 
   axios
-    .post(`/api/users/${_id}`, _id, body, config)
+    .post(`/api/users/${id}`, body, config)
     .then(res =>
       dispatch({
         type: UPDATE_SUCCESS,

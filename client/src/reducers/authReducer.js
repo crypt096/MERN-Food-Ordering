@@ -34,11 +34,19 @@ export default function(state = initialState, action) {
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-    case UPDATE_SUCCESS:
       localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         ...action.payload,
+        isAuthenticated: true,
+        isLoading: false
+      };
+    case UPDATE_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+        user:
+          state.user._id === action.payload._id ? action.payload : state.user,
         isAuthenticated: true,
         isLoading: false
       };

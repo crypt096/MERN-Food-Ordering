@@ -10,7 +10,8 @@ import {
   Form,
   Input,
   Row,
-  Col
+  Col,
+  Alert
 } from "reactstrap";
 
 import { connect } from "react-redux";
@@ -26,19 +27,33 @@ class UserProfile extends Component {
   };
 
   state = {
-    name: "",
+    // name: "",
     email: "",
     password: "",
     firstName: "",
     lastName: "",
     address: "",
-    favoriteFood: ""
+    favoriteFood: "",
+    alertVisible: false,
+    errorVisible: false
   };
 
-  printState = e => {
-    e.preventDefault();
-    console.log(this.state);
-    console.log(this.props.user);
+  checkInputValue = e => {
+    if (e.target.value === e.target.defaultValue) {
+      this.setState({ [e.target.name]: e.target.defaultValue });
+    }
+  };
+
+  showAlert = () => {
+    this.setState({
+      alertVisible: true
+    });
+  };
+
+  showErrorAlert = () => {
+    this.setState({
+      errorVisible: true
+    });
   };
 
   onChange = e => {
@@ -50,26 +65,41 @@ class UserProfile extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    // Create user object
-    const updatedUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      address: this.state.address,
-      favoriteFood: this.state.favoriteFood
-    };
+    if (
+      !this.state.email ||
+      !this.state.password ||
+      !this.state.firstName ||
+      !this.state.lastName ||
+      !this.state.address ||
+      !this.state.favoriteFood
+    ) {
+      this.showErrorAlert();
+      setTimeout(() => {
+        this.setState({
+          errorVisible: false
+        });
+      }, 3000);
+    } else {
+      // Create user object
+      const updatedUser = {
+        // name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        address: this.state.address,
+        favoriteFood: this.state.favoriteFood
+      };
 
-    // Attempt to register
-    this.props.update(updatedUser);
+      // Attempt to register
+      this.props.update(window.location.pathname.substring(7), updatedUser);
 
-    console.log(this.props);
+      this.showAlert();
 
-    // Log message
-    console.log("User updated successfully!");
-
-    window.location = "/";
+      setTimeout(() => {
+        window.location = "/";
+      }, 1000);
+    }
   };
 
   render() {
@@ -78,6 +108,12 @@ class UserProfile extends Component {
         <div className="content">
           {this.props.user ? (
             <div>
+              <Alert color="success" isOpen={this.state.alertVisible}>
+                Profile successfully updated!
+              </Alert>
+              <Alert color="danger" isOpen={this.state.errorVisible}>
+                Please check all fields!
+              </Alert>
               <Row>
                 <Col md="8">
                   <Card
@@ -99,6 +135,7 @@ class UserProfile extends Component {
                                 name="name"
                                 defaultValue={this.props.user.name}
                                 onChange={this.onChange}
+                                onMouseLeave={this.checkInputValue}
                                 placeholder="Username"
                                 type="text"
                               />
@@ -115,6 +152,7 @@ class UserProfile extends Component {
                                 type="email"
                                 defaultValue={this.props.user.email}
                                 onChange={this.onChange}
+                                onMouseLeave={this.checkInputValue}
                               />
                             </FormGroup>
                           </Col>
@@ -127,6 +165,7 @@ class UserProfile extends Component {
                                 type="password"
                                 defaultValue={this.props.user.password}
                                 onChange={this.onChange}
+                                onMouseLeave={this.checkInputValue}
                               />
                             </FormGroup>
                           </Col>
@@ -139,6 +178,7 @@ class UserProfile extends Component {
                                 name="firstName"
                                 defaultValue={this.props.user.firstName}
                                 onChange={this.onChange}
+                                onMouseLeave={this.checkInputValue}
                                 placeholder="Company"
                                 type="text"
                               />
@@ -151,6 +191,7 @@ class UserProfile extends Component {
                                 name="lastName"
                                 defaultValue={this.props.user.lastName}
                                 onChange={this.onChange}
+                                onMouseLeave={this.checkInputValue}
                                 placeholder="Last Name"
                                 type="text"
                               />
@@ -165,6 +206,7 @@ class UserProfile extends Component {
                                 name="address"
                                 defaultValue={this.props.user.address}
                                 onChange={this.onChange}
+                                onMouseLeave={this.checkInputValue}
                                 placeholder="Home Address"
                                 type="text"
                               />
@@ -181,6 +223,7 @@ class UserProfile extends Component {
                                 name="favoriteFood"
                                 defaultValue={this.props.user.favoriteFood}
                                 onChange={this.onChange}
+                                onMouseLeave={this.checkInputValue}
                                 placeholder="Favorite food"
                                 type="text"
                               />

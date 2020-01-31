@@ -17,11 +17,25 @@ import PropTypes from "prop-types";
 class OrderModal extends Component {
   state = {
     orderModal: false,
+    alertVisible: false,
+    errorVisible: false,
     name: ""
   };
 
   static propTypes = {
     isAuthenticated: PropTypes.bool
+  };
+
+  showAlert = () => {
+    this.setState({
+      alertVisible: true
+    });
+  };
+
+  showErrorAlert = () => {
+    this.setState({
+      errorVisible: true
+    });
   };
 
   toggle = () => {
@@ -37,22 +51,39 @@ class OrderModal extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const newOrder = {
-      name: this.state.name,
-      description: this.state.description,
-      quantity: this.state.quantity,
-      rating: this.state.rating,
-      status: "in progress",
-      place_of_delivery: this.state.place_of_delivery
-    };
+    if (
+      !this.state.name ||
+      !this.state.description ||
+      !this.state.quantity ||
+      !this.state.rating ||
+      !this.state.place_of_delivery
+    ) {
+      this.showErrorAlert();
+      setTimeout(() => {
+        this.setState({
+          errorVisible: false
+        });
+      }, 3000);
+    } else {
+      const newOrder = {
+        name: this.state.name,
+        description: this.state.description,
+        quantity: this.state.quantity,
+        rating: this.state.rating,
+        status: "in progress",
+        place_of_delivery: this.state.place_of_delivery
+      };
 
-    // Add order via addOrder action
-    this.props.addOrder(newOrder);
+      // Add order via addOrder action
+      this.props.addOrder(newOrder);
 
-    // Close modal
-    this.toggle();
+      this.showAlert();
 
-    alert("Order successfully added!");
+      setTimeout(() => {
+        // Close modal
+        this.toggle();
+      }, 2000);
+    }
   };
 
   render() {
@@ -76,6 +107,20 @@ class OrderModal extends Component {
         )}
 
         <Modal isOpen={this.state.orderModal} toggle={this.toggle}>
+          <Alert
+            className="mx-3 my-3"
+            color="success"
+            isOpen={this.state.alertVisible}
+          >
+            Your food has been successfully ordered
+          </Alert>
+          <Alert
+            className="mx-3 my-3"
+            color="danger"
+            isOpen={this.state.errorVisible}
+          >
+            Please enter all fields
+          </Alert>
           <ModalHeader toggle={this.toggle}>Add To Ordering List</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>

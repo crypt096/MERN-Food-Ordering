@@ -31,8 +31,8 @@ router.get("/:id", (req, res) => {
 router.post("/:id", (req, res) => {
   User.findById(req.params.id)
     .then(user => {
-      (user.name = req.body.name),
-        (user.email = req.body.email),
+      // (user.name = req.body.name),
+      (user.email = req.body.email),
         (user.password = req.body.password),
         (user.firstName = req.body.firstName),
         (user.lastName = req.body.lastName),
@@ -54,7 +54,7 @@ router.post("/:id", (req, res) => {
                   token,
                   user: {
                     id: user.id,
-                    name: user.name,
+                    // name: user.name,
                     email: user.email,
                     firstName: user.firstName,
                     lastName: user.lastName,
