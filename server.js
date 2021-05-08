@@ -10,7 +10,7 @@ const foods = require("./routes/api/foods");
 const users = require("./routes/api/users");
 const auth = require("./routes/api/auth");
 
-//Body parser middleware
+// Body parser middleware
 app.use(express.json());
 
 // DB config
@@ -21,10 +21,10 @@ mongoose
   .connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then(() => console.log("MongoDB connected successfully!"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 app.use("/api/items", items);
 app.use("/api/orders", orders);
